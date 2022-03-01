@@ -33,7 +33,5 @@ public class MatrixIt implements Iterator<Integer> {
         MatrixIt it = new MatrixIt(new int[][]{{}, {1}});
         System.out.println(it.hasNext());
     }
-
-
 }
 
