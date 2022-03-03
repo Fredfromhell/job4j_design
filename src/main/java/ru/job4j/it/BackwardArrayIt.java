@@ -26,16 +26,4 @@ public class BackwardArrayIt implements Iterator<Integer> {
         return data[point--];
 
     }
-
-    public static void main(String[] args) {
-        BackwardArrayIt test = new BackwardArrayIt(new int[]{});
-        System.out.println(test.next());
-        System.out.println(test.next());
-        System.out.println(test.next());
-        System.out.println(test.hasNext());
-        System.out.println(test.hasNext());
-        System.out.println(test.hasNext());
-        System.out.println(test.hasNext());
-
-    }
 }
