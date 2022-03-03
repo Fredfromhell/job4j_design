@@ -6,10 +6,10 @@ import java.util.NoSuchElementException;
 public class BackwardArrayIt implements Iterator<Integer> {
     private final int[] data;
     private int point = 0;
-    private int count = 0;
 
     public BackwardArrayIt(int[] data) {
         this.data = data;
+        this.point = data.length - 1;
     }
 
     @Override
@@ -23,8 +23,6 @@ public class BackwardArrayIt implements Iterator<Integer> {
         if (!hasNext()) {
             throw new NoSuchElementException("Массив пустой");
         }
-        point = data.length - 1 - count;
-        count++;
         return data[point--];
 
     }

@@ -30,10 +30,11 @@ public class EvenNumbersIterator implements Iterator<Integer> {
 
     public static void main(String[] args) {
         EvenNumbersIterator test = new EvenNumbersIterator(new int[]{1, 2, 3, 4, 5, 6, 7});
-        System.out.println(test.next());
-        System.out.println(test.next());
-        System.out.println(test.next());
-        System.out.println(test.next());
+        System.out.println(test.hasNext());
+        System.out.println(test.hasNext());
+        System.out.println(test.hasNext());
+        System.out.println(test.hasNext());
+        System.out.println(test.hasNext());
 
     }
 }
