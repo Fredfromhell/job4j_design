@@ -14,7 +14,7 @@ public class BackwardArrayIt implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        return point < data.length;
+        return point < data.length && data.length != 0;
 
     }
 
@@ -28,7 +28,7 @@ public class BackwardArrayIt implements Iterator<Integer> {
     }
 
     public static void main(String[] args) {
-        BackwardArrayIt test = new BackwardArrayIt(new int[]{1, 2, 3});
+        BackwardArrayIt test = new BackwardArrayIt(new int[]{});
         System.out.println(test.next());
         System.out.println(test.next());
         System.out.println(test.next());
