@@ -14,32 +14,26 @@ public class EvenNumbersIterator implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        boolean rsl = false;
-        for (int i = index; i < data.length; i++) {
-            if (data[i] % 2 == 0) {
-                rsl = true;
-                index = i;
-                break;
-            }
+        while (index < data.length && data[index] % 2 != 0) {
+            index++;
         }
-        return rsl;
+        return index < data.length;
     }
 
     @Override
-    public Integer next()  {
-        if (hasNext()) {
-            return data[index++];
-
-        } else {
+    public Integer next() {
+        if (!hasNext()) {
             throw new NoSuchElementException("Нет четных элементов");
         }
+        return data[index++];
     }
 
     public static void main(String[] args) {
-        EvenNumbersIterator test = new EvenNumbersIterator(new int[]{1, 3, 5, 7, 200});
-        System.out.println(test.hasNext());
+        EvenNumbersIterator test = new EvenNumbersIterator(new int[]{1, 2, 3, 4, 5, 6, 7});
         System.out.println(test.next());
-        System.out.println(test.hasNext());
+        System.out.println(test.next());
+        System.out.println(test.next());
+        System.out.println(test.next());
 
     }
 }

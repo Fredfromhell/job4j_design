@@ -21,7 +21,7 @@ public class BackwardArrayIt implements Iterator<Integer> {
     @Override
     public Integer next() {
         if (!hasNext()) {
-            throw new NoSuchElementException();
+            throw new NoSuchElementException("Массив пустой");
         }
         point = data.length - 1 - count;
         count++;
@@ -34,6 +34,10 @@ public class BackwardArrayIt implements Iterator<Integer> {
         System.out.println(test.next());
         System.out.println(test.next());
         System.out.println(test.next());
+        System.out.println(test.hasNext());
+        System.out.println(test.hasNext());
+        System.out.println(test.hasNext());
+        System.out.println(test.hasNext());
 
     }
 }
