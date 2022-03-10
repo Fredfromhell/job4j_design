@@ -21,7 +21,7 @@ public class BackwardArrayIt implements Iterator<Integer> {
     @Override
     public Integer next() {
         if (!hasNext()) {
-            throw new NoSuchElementException("Массив пустой");
+            throw new NoSuchElementException("Нет элементов");
         }
         return data[point--];
 
