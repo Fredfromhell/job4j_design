@@ -17,8 +17,11 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Animal{" +
-                "type='" + type + '\'' +
+        return "Animal{"
+                +
+                "type='"
+                + type + '\''
+                +
                 '}';
     }
 }

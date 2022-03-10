@@ -12,9 +12,16 @@ public class Tiger extends Predator {
 
     @Override
     public String toString() {
-        return "Tiger{" +
-                "color='" + color + '\'' +
-                ", weight='" + weight + '\'' +
+        return "Tiger{"
+                +
+                "color='"
+                + color
+                + '\''
+                +
+                ", weight='"
+                + weight
+                + '\''
+                +
                 '}';
     }
 }

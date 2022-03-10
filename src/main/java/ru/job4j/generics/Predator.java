@@ -40,10 +40,19 @@ public class Predator extends Animal {
 
     @Override
     public String toString() {
-        return "Predator{" +
-                "weapon='" + weapon + '\'' +
-                ", ship='" + ship + '\'' +
-                ", killSchwarzenegger=" + killSchwarzenegger +
+        return "Predator{"
+                +
+                "weapon='"
+                + weapon
+                + '\''
+                +
+                ", ship='"
+                + ship
+                + '\''
+                +
+                ", killSchwarzenegger="
+                + killSchwarzenegger
+                +
                 '}';
     }
 }
