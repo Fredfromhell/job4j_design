@@ -11,7 +11,8 @@ public class Generics {
         List<Predator> second = new ArrayList<>();
         List<Tiger> third = new ArrayList<>();
         first.add(new Animal("chordates"));
-        second.add(new Predator("unknown", "laser", "fromSpace", false));
+        second.add(new Predator("unknown", "laser",
+                "fromSpace", false));
         third.add(new Tiger("unknown", "laser", "fromSpace",
                 false, "orange", "100"));
 
