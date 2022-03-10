@@ -14,7 +14,7 @@ public class Generics {
         second.add(new Predator("unknown", "laser",
                 "fromSpace", false));
         third.add(new Tiger("unknown", "laser", "fromSpace",
-                false, "orange", "100"));
+                 false, "orange", "100"));
 
         gen.printObject(first);
         gen.printObject(second);
