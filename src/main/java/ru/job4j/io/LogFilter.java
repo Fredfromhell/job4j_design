@@ -11,10 +11,10 @@ public class LogFilter {
         try (BufferedReader reader = new BufferedReader(new FileReader("log.txt"))) {
             rsl = reader.lines()
                     .map(str -> str.split(" "))
-                    .filter(t -> t[8].contains("404"))
+                    .filter(t -> t[t.length - 2].equals("404"))
                     .map(Arrays::toString)
                     .collect(Collectors.toList());
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return rsl;
@@ -26,7 +26,7 @@ public class LogFilter {
                         new FileOutputStream(file)
                 ))) {
             out.write(String.valueOf(log));
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
