@@ -5,7 +5,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Bespalov Alexy
+ * @version 0.2
+ * Класс описывает простейшее чтение из текстового лог файла,
+ * его филтрацию и запись отфилтрованных данных в файл.
+ */
+
 public class LogFilter {
+    /**
+     * Обработка и фильтрация файла с помощью Stream Api.
+     *
+     * @param file Путь к файлу.
+     * @return Отфилтрованный список по тексту 404.
+     */
     public List<?> filter(String file) {
         List<?> rsl = null;
         try (BufferedReader reader = new BufferedReader(new FileReader("log.txt"))) {
