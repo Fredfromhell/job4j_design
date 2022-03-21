@@ -43,6 +43,10 @@ public class Config {
         return out.toString();
     }
 
+    public Map<String, String> getValues() {
+        return values;
+    }
+
     public static void main(String[] args) {
         Config config = new Config("./data/IllegalArgumentException.properties");
         System.out.println(config);

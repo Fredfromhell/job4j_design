@@ -2,6 +2,9 @@ package ru.job4j.io;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;
+
+import java.util.Map;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
@@ -22,7 +25,8 @@ public class ConfigTest {
         String path = "./data/pair_with_comment.properties";
         Config config = new Config(path);
         config.load();
-        assertThat(config.value("name"), is("Alex"));
+        Map<String, String> rsl = config.getValues();
+        assertThat(rsl.size(), is(1));
 
     }
 }
