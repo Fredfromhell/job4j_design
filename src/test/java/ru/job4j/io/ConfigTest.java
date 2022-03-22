@@ -29,4 +29,11 @@ public class ConfigTest {
         assertThat(rsl.size(), is(1));
 
     }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void whenBadFile()  {
+        String path = "./data/IllegalArgumentException.properties";
+        Config config = new Config(path);
+        config.load();
+    }
 }

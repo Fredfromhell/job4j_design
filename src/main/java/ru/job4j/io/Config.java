@@ -19,13 +19,21 @@ public class Config {
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(path))) {
             read.lines()
-                    .filter(diez -> !diez.contains("#"))
+                    .filter(diez -> !diez.startsWith("#"))
                     .filter(e -> !e.isEmpty())
+                    .filter(this::checkString)
                     .map(s -> s.split("="))
                     .forEach(a -> values.put(a[0], a[1]));
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean checkString(String string)  {
+        if (!string.contains("=") || string.startsWith("=") || string.endsWith("=")) {
+            throw new IllegalArgumentException("Нарушение шаблона файла");
+        }
+        return true;
     }
 
     public String value(String key) {
@@ -48,8 +56,8 @@ public class Config {
     }
 
     public static void main(String[] args) {
-        Config config = new Config("./data/IllegalArgumentException.properties");
-        System.out.println(config);
+        Config config = new Config("./data/pair_without_comment.properties");
+        //  System.out.println(config);
         config.load();
         config.values.forEach((k, v) -> System.out.println("Key: " + k + " Value: " + v));
         System.out.println(config.value("name"));
