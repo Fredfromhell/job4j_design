@@ -18,7 +18,7 @@ public class Analizy {
                     out.printf(rsl[1] + ";");
 
                 }
-                if (!serverState && "200".equals(rsl[0])) {
+                if (!serverState && ("200".equals(rsl[0]) || "300".equals(rsl[0]))) {
                     serverState = true;
                     out.println(rsl[1] + ";");
                 }
