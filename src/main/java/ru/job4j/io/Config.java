@@ -57,7 +57,7 @@ public class Config {
 
     public static void main(String[] args) {
         Config config = new Config("./data/pair_without_comment.properties");
-        //  System.out.println(config);
+        System.out.println(config);
         config.load();
         config.values.forEach((k, v) -> System.out.println("Key: " + k + " Value: " + v));
         System.out.println(config.value("name"));
