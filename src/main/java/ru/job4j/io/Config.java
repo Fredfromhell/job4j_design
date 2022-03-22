@@ -22,15 +22,22 @@ public class Config {
                     .filter(diez -> !diez.startsWith("#"))
                     .filter(e -> !e.isEmpty())
                     .filter(this::checkString)
-                    .map(s -> s.split("="))
+                    .map(s -> s.split("=", 2))
                     .forEach(a -> values.put(a[0], a[1]));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public boolean checkString(String string)  {
-        if (!string.contains("=") || string.startsWith("=") || string.endsWith("=")) {
+    public boolean checkString(String string) {
+       int count = 0;
+        for (int i = 0; i < string.length(); i++) {
+            if (String.valueOf(string.charAt(i)).equals("=")) {
+                count++;
+            }
+        }
+        if (!string.contains("=") || string.startsWith("=")
+                || (count == 1 && string.endsWith("="))) {
             throw new IllegalArgumentException("Нарушение шаблона файла");
         }
         return true;
@@ -56,7 +63,7 @@ public class Config {
     }
 
     public static void main(String[] args) {
-        Config config = new Config("./data/pair_without_comment.properties");
+        Config config = new Config("./data/IllegalArgumentException.properties");
         System.out.println(config);
         config.load();
         config.values.forEach((k, v) -> System.out.println("Key: " + k + " Value: " + v));
