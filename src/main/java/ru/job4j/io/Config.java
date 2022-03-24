@@ -31,12 +31,13 @@ public class Config {
 
     public boolean checkString(String string) {
        int count = 0;
+       int index = string.indexOf("=");
         for (int i = 0; i < string.length(); i++) {
             if (String.valueOf(string.charAt(i)).equals("=")) {
                 count++;
             }
         }
-        if (!string.contains("=") || string.startsWith("=")
+        if (index == -1 || index == 0
                 || (count == 1 && string.endsWith("="))) {
             throw new IllegalArgumentException("Нарушение шаблона файла");
         }
