@@ -11,7 +11,7 @@ public class ArgsName {
 
     public String get(String key) {
         if (values.get(key) == null) {
-            throw new IllegalArgumentException("Ключ не существует");
+            throw new IllegalArgumentException("Не задано значение");
         }
         return values.get(key);
     }
