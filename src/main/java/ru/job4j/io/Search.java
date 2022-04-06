@@ -9,11 +9,11 @@ import java.util.function.Predicate;
 
 public class Search {
     public static void main(String[] args) throws IOException {
-        if (args.length == 0) {
-            throw new IllegalArgumentException("Не задан каталог поиска");
+        if (args.length != 2) {
+            throw new IllegalArgumentException("Не заданы параметры");
         }
-        if (args.length < 2) {
-            throw new IllegalArgumentException("Название файла");
+        if (!chekRsl(args)) {
+            throw new IllegalArgumentException("Заданные параметры некорректны");
         }
         Path start = Paths.get(args[0]);
         search(start, p -> p.toFile().getName().endsWith(args[1])).forEach(System.out::println);
@@ -23,5 +23,10 @@ public class Search {
         SearchFiles searcher = new SearchFiles(condition);
         Files.walkFileTree(root, searcher);
         return searcher.getPaths();
+    }
+
+    private static boolean chekRsl(String[] args) {
+        return Paths.get(args[0]).toFile().isDirectory()
+                && args[1].startsWith(".") && args[1].length() == 4;
     }
 }
