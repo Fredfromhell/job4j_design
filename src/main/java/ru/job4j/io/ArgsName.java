@@ -10,7 +10,7 @@ public class ArgsName {
     private final Map<String, String> values = new HashMap<>();
 
     public String get(String key) {
-        if (values.get(key) == null) {
+        if (!values.containsKey(key)) {
             throw new IllegalArgumentException("Не задано значение");
         }
         return values.get(key);
@@ -22,7 +22,7 @@ public class ArgsName {
                 .forEach(s -> values.put(s[0].substring(1), s[1]));
     }
 
-    public boolean checkString(String string) {
+    private boolean checkString(String string) {
         int count = 0;
         int index = string.indexOf("=");
         for (int i = 0; i < string.length(); i++) {
@@ -31,7 +31,7 @@ public class ArgsName {
             }
         }
         if (index == -1 || index == 0
-                || (count == 1 && string.endsWith("="))) {
+                || (count == 1 && string.endsWith("=")) || !string.startsWith("-"))  {
             throw new IllegalArgumentException("Нарушение шаблона файла");
         }
         return true;
