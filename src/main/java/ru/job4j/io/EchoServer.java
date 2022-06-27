@@ -25,7 +25,7 @@ public class EchoServer {
                 }
             }
             if (server.isClosed()) {
-                System.out.println("Server shutdown");
+                System.out.println("Server shutdown!");
             }
         }
 
