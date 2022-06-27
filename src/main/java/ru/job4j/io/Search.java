@@ -12,8 +12,11 @@ public class Search {
         if (args.length != 2) {
             throw new IllegalArgumentException("Не заданы параметры");
         }
-        if (!chekRsl(args)) {
-            throw new IllegalArgumentException("Заданные параметры некорректны");
+        if (!chekDir(args[0])) {
+            throw new IllegalArgumentException("Не задана дериктория");
+        }
+        if (!isExtension(args[1])) {
+            throw new IllegalArgumentException("Не задано расширение");
         }
         Path start = Paths.get(args[0]);
         search(start, p -> p.toFile().getName().endsWith(args[1])).forEach(System.out::println);
@@ -25,8 +28,12 @@ public class Search {
         return searcher.getPaths();
     }
 
-    private static boolean chekRsl(String[] args) {
-        return Paths.get(args[0]).toFile().isDirectory()
-                && args[1].startsWith(".") && args[1].length() == 4;
+    private static boolean chekDir(String args) {
+        return Paths.get(args).toFile().isDirectory();
     }
+
+    private static boolean isExtension(String args) {
+        return args.startsWith(".");
+    }
+
 }
