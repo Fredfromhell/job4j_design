@@ -13,5 +13,16 @@ public class UsageLog4j {
         LOG.info("info message");
         LOG.warn("warn message");
         LOG.error("error message");
+        String name = "Petr Arsentev";
+        int age = 33;
+        boolean mentor = true;
+        float flot = 1.12431241f;
+        double dob = 1.124214121252151251251251;
+        byte byt = 127;
+        short shot = 32767;
+        char male = 'm';
+        long lon = 9223372036854775807L;
+        LOG.debug("User info name : {}, age : {}, mentor : {}, flot : {}, dob : {}, byt : {}, shot "
+                + ": {},male : {}, lon : {}", name, age, mentor, flot, dob, byt, shot, male, lon);
     }
 }
