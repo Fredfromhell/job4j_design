@@ -22,7 +22,9 @@ select * from product where name like 'Мороженое%';
 
 select * from product where expired_date < current_date;
 
-select  max(price) from product;
+select p.name, max(price)
+from product as p  where price = (select  max(price) from product)
+group by p.name;
 
 select t.name, count(p.name)
 from type as t
