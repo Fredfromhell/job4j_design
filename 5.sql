@@ -5,11 +5,14 @@ name text
 
 create table product(
 id serial primary key,
-type_id references type(id),
+type_id int references type(id),
 expired_date date,
 price int,
 name text
 );
+
+ALTER SEQUENCE product_id_seq RESTART WITH 1;
+ALTER SEQUENCE type_id_seq RESTART WITH 1;
 
 insert into type (name) values ('Сыр'), ('Молоко');
 insert into product (name, type_id, expired_date, price) values ('Сыр моцарелла',5,'2022-9-10',500), ('Сыр гауда',5, '2022-7-10',300),
@@ -22,9 +25,9 @@ select * from product where name like 'Мороженое%';
 
 select * from product where expired_date < current_date;
 
-select p.name, max(price)
+select p.name, p.price
+
 from product as p  where price = (select  max(price) from product)
-group by p.name;
 
 select t.name, count(p.name)
 from type as t
