@@ -11,8 +11,6 @@ price int,
 name text
 );
 
-ALTER SEQUENCE product_id_seq RESTART WITH 1;
-ALTER SEQUENCE type_id_seq RESTART WITH 1;
 
 insert into type (name) values ('Сыр'), ('Молоко');
 insert into product (name, type_id, expired_date, price) values ('Сыр моцарелла',5,'2022-9-10',500), ('Сыр гауда',5, '2022-7-10',300),
