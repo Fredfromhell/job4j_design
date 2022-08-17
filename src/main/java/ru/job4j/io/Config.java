@@ -64,11 +64,11 @@ public class Config {
     }
 
     public static void main(String[] args) {
-        Config config = new Config("./data/IllegalArgumentException.properties");
+        Config config = new Config("./data/app.properties");
         System.out.println(config);
         config.load();
         config.values.forEach((k, v) -> System.out.println("Key: " + k + " Value: " + v));
-        System.out.println(config.value("name"));
+        System.out.println(config.value("login"));
 
     }
 }
