@@ -12,12 +12,8 @@ public class TableEditor implements AutoCloseable {
     private Properties properties;
 
     public TableEditor(Properties properties) throws SQLException,
-            ClassNotFoundException, IOException {
+            ClassNotFoundException {
         this.properties = properties;
-        try (InputStream in = TableEditor.class.getClassLoader()
-                .getResourceAsStream("app.properties")) {
-            properties.load(in);
-        }
         initConnection();
     }
 
@@ -27,36 +23,37 @@ public class TableEditor implements AutoCloseable {
                 properties.getProperty("login"), properties.getProperty("password"));
     }
 
-    public void createTable(String tableName) throws Exception {
-        Statement statement = connection.createStatement();
+    public void statement(String command) throws SQLException {
+        try (Statement statement = connection.createStatement()) {
+            statement.execute(command);
+        }
+    }
+
+    public void createTable(String tableName) throws SQLException {
         String create = "create table if not exists " + tableName + "();";
-        statement.execute(create);
+        statement(create);
     }
 
     public void dropTable(String tableName) throws SQLException {
-        Statement statement = connection.createStatement();
         String delete = "drop table " + tableName + ";";
-        statement.execute(delete);
+        statement(delete);
     }
 
     public void addColumn(String tableName, String columnName, String type) throws SQLException {
-        Statement statement = connection.createStatement();
         String add = "ALTER TABLE " + tableName + " ADD COLUMN " + columnName + " " + type;
-        statement.execute(add);
+        statement(add);
     }
 
     public void dropColumn(String tableName, String columnName) throws SQLException {
-        Statement statement = connection.createStatement();
         String drop = "ALTER TABLE " + tableName + " DROP COLUMN " + columnName + ";";
-        statement.execute(drop);
+        statement(drop);
     }
 
     public void renameColumn(String tableName,
                              String columnName, String newColumnName) throws SQLException {
-        Statement statement = connection.createStatement();
         String rename = "ALTER TABLE " + tableName + " RENAME COLUMN "
                 + columnName + " TO " + newColumnName + ";";
-        statement.execute(rename);
+        statement(rename);
     }
 
     public static String getTableScheme(Connection connection, String tableName) throws Exception {
@@ -79,9 +76,21 @@ public class TableEditor implements AutoCloseable {
     }
 
     public static void main(String[] args) throws Exception {
-        TableEditor tableEditor = new TableEditor(new Properties());
-        tableEditor.renameColumn("test", "name", "newname");
-        System.out.println(getTableScheme(tableEditor.connection, "test"));
+        Properties properties = new Properties();
+        try (InputStream in = TableEditor.class.getClassLoader()
+                .getResourceAsStream("app.properties")) {
+            properties.load(in);
+        }
+        try (TableEditor tableEditor = new TableEditor(properties)) {
+            tableEditor.createTable("test");
+            tableEditor.createTable("test2");
+            tableEditor.dropTable("test2");
+            tableEditor.addColumn("test", "name", "text");
+            tableEditor.renameColumn("test", "name", "newname");
+            tableEditor.dropColumn("test", "newname");
+
+            System.out.println(getTableScheme(tableEditor.connection, "test"));
+        }
     }
 
     @Override
