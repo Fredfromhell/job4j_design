@@ -24,11 +24,7 @@ public class ImportDB {
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             rd.lines().forEach(line -> {
                 String[] array = line.split(";", 2);
-                if (array.length < 2) {
-                    throw new IllegalArgumentException("Нарушение шаблона файла");
-                }
-
-                if (array[0].isEmpty() || array[1].isEmpty()) {
+                if (array.length < 2 || array[0].isEmpty() || array[1].isEmpty()) {
                     throw new IllegalArgumentException("Нарушение шаблона файла");
                 }
             });
