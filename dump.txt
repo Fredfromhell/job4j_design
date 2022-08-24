@@ -1,5 +1,4 @@
 Petr Arsentev;parsentev@yandex.ru;
 Ivan Ivanov;iivanov@gmail.com;
 alexey;wewegg@ewevw.ru
-Petr Arsentev;
-;parsentev@yandex.ru;
+alexey
