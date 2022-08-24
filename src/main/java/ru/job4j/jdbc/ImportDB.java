@@ -27,10 +27,11 @@ public class ImportDB {
                 if (array.length < 2 || array[0].isEmpty() || array[1].isEmpty()) {
                     throw new IllegalArgumentException("Нарушение шаблона файла");
                 }
-            });
-            rd.lines().map(str -> str.split(";", 2))
-                    .forEach(array -> users.add(new User(array[0], array[1])));
+                users.add(new User(array[0], array[1]));
+            }
+            );
         }
+
         return users;
     }
 
