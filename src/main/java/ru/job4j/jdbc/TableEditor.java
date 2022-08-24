@@ -23,37 +23,37 @@ public class TableEditor implements AutoCloseable {
                 properties.getProperty("login"), properties.getProperty("password"));
     }
 
-    public void statement(String command) throws SQLException {
+    public void useStatement(String command) throws SQLException {
         try (Statement statement = connection.createStatement()) {
             statement.execute(command);
         }
     }
 
     public void createTable(String tableName) throws SQLException {
-        String create = "create table if not exists " + tableName + "();";
-        statement(create);
+        String create = String.format("create table if not exists %s ();", tableName);
+        useStatement(create);
     }
 
     public void dropTable(String tableName) throws SQLException {
-        String delete = "drop table " + tableName + ";";
-        statement(delete);
+        String delete = String.format("drop table %s ;", tableName);
+        useStatement(delete);
     }
 
     public void addColumn(String tableName, String columnName, String type) throws SQLException {
-        String add = "ALTER TABLE " + tableName + " ADD COLUMN " + columnName + " " + type;
-        statement(add);
+        String add = String.format("ALTER TABLE %s ADD COLUMN %s %s;", tableName, columnName, type);
+        useStatement(add);
     }
 
     public void dropColumn(String tableName, String columnName) throws SQLException {
-        String drop = "ALTER TABLE " + tableName + " DROP COLUMN " + columnName + ";";
-        statement(drop);
+        String drop = String.format("ALTER TABLE %s DROP COLUMN %s;", tableName, columnName);
+        useStatement(drop);
     }
 
     public void renameColumn(String tableName,
                              String columnName, String newColumnName) throws SQLException {
-        String rename = "ALTER TABLE " + tableName + " RENAME COLUMN "
-                + columnName + " TO " + newColumnName + ";";
-        statement(rename);
+        String rename = String.format("ALTER TABLE %s RENAME COLUMN %s TO %s;", tableName,
+                columnName, newColumnName);
+        useStatement(rename);
     }
 
     public static String getTableScheme(Connection connection, String tableName) throws Exception {
@@ -88,7 +88,6 @@ public class TableEditor implements AutoCloseable {
             tableEditor.addColumn("test", "name", "text");
             tableEditor.renameColumn("test", "name", "newname");
             tableEditor.dropColumn("test", "newname");
-
             System.out.println(getTableScheme(tableEditor.connection, "test"));
         }
     }
